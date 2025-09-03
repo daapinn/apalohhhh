@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...........</title>
+    <link rel="icon" type="image/png" href="img.png"> 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto Mono', monospace;
+            color: #4a148c;
+            overflow: hidden;
+            background-image: url('b8261f0163fff2cc01c5cb1159d4767b.gif');
+            background-size: 112%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Halaman Pembuka */
+        .landing-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .landing-page button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #8e24aa;
+            border: 2px solid #8e24aa;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .landing-page button:hover {
+            background-color: #6a1b9a;
+            transform: scale(1.05);
+        }
+
+        /* Konten Utama */
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            border: 3px solid #8e24aa;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            box-sizing: border-box;
+            margin: 20px;
+        }
+
+        .card-text {
+            display: inline-block;
+        }
+
+        .card-text::after {
+            content: '';
+            display: inline-block;
+            width: .15em;
+            height: 1em;
+            margin-left: .15em;
+            background-color: orange;
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { background-color: transparent; }
+            50% { background-color: orange; }
+        }
+
+        /* Media Queries untuk Layar Kecil (ponsel) */
+        @media (max-width: 600px) {
+            body {
+                background-position: right;
+                background-size: auto 112vh;
+            }
+            .container {
+                width: 95%;
+                padding: 15px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content" class="container" style="display: none;">
+        <span id="typed-text" class="card-text"></span>
+    </div>
+    
+    <div id="landing-page" class="landing-page">
+        <button id="open-message-btn">Open This !</button>
+    </div>
+
+    <audio id="background-audio" src="alinewithoutalook.mp3" loop muted></audio>
+
+    <script>
+        const landingPage = document.getElementById('landing-page');
+        const openMessageBtn = document.getElementById('open-message-btn');
+        const mainContent = document.getElementById('main-content');
+        const textElement = document.getElementById('typed-text');
+        const backgroundAudio = document.getElementById('background-audio');
+
+        const fullText = "Haiiii, semangat yaaaaa hari ini magang nya, cie ada yang bentar lagi beress, gakan kerasa loh, aku kan hari ini gada kerjaan karena dah pada beres, that's why i made this, sambil gabut aja siiii. Pokonya gituu deee, mangat yaaa, sama inget gabolee jutekkk jutek, tapi ke klo orang lain boleh banget wkwkwk, jangan lupa sarapan juga yaa hari ini, makasyiih dah bukaa link ini yaaaa, babayyy.......";
+        let i = 0;
+
+        function typeWriter() {
+            if (i < fullText.length) {
+                textElement.textContent += fullText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        openMessageBtn.addEventListener('click', () => {
+            landingPage.style.display = 'none';
+            mainContent.style.display = 'block';
+            backgroundAudio.muted = false;
+            backgroundAudio.play();
+            typeWriter();
+        });
+    </script>
+</body>
+</html>
